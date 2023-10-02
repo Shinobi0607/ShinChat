@@ -2,9 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:whatsapp_ui/common/utils/utils.dart';
+import 'package:whatsapp_ui/models/user_model.dart';
 
-final selectContactRepositoryProvider =
-    Provider((ref) => SelectContactRepository(firestore: FirebaseFirestore.instance));
+final selectContactRepositoryProvider = Provider(
+    (ref) => SelectContactRepository(firestore: FirebaseFirestore.instance));
 
 class SelectContactRepository {
   final FirebaseFirestore firestore;
@@ -16,11 +18,36 @@ class SelectContactRepository {
     List<Contact> contacts = [];
     try {
       if (await FlutterContacts.requestPermission()) {
-        await FlutterContacts.getContacts(withProperties: true);
+        contacts = await FlutterContacts.getContacts(withProperties: true);
       }
     } catch (e) {
       debugPrint(e.toString());
     }
     return contacts;
+  }
+
+  void selectContact(Contact selectedContact, BuildContext context) async {
+    try {
+      var userCollection =
+          await firestore.collection('users').get(); // Add 'await' here
+      bool isFound = false;
+
+      for (var document in userCollection.docs) {
+        var userData = UserModel.fromMap(document.data());
+        String selectedPhoneNum =
+            selectedContact.phones[0].number.replaceAll(' ', '');
+        if (userData.phoneNumber == selectedPhoneNum) {
+          isFound = true;
+          // Navigator.pushNamed(context, Mobile);
+        }
+      }
+      if (!isFound) {
+        showSnackBar(
+            context: context,
+            content: 'User not found. Please invite them to Whatsapp');
+      }
+    } catch (e) {
+      showSnackBar(context: context, content: e.toString());
+    }
   }
 }
