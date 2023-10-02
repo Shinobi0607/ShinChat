@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "604832905961",
+    "project_id": "shinchat-318c7",
+    "storage_bucket": "shinchat-318c7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:604832905961:android:897ec523a38929d6c40e78",
+        "android_client_info": {
+          "package_name": "com.example.whatsapp_ui"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnT68F5I_4ihiH2UoD0EDwyvP9avcO238"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
