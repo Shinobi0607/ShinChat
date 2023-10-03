@@ -4,9 +4,10 @@ import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whatsapp_ui/common/utils/utils.dart';
 import 'package:whatsapp_ui/models/user_model.dart';
+import 'package:whatsapp_ui/screens/mobile_chat_screen.dart';
 
 final selectContactRepositoryProvider = Provider(
-    (ref) => SelectContactRepository(firestore: FirebaseFirestore.instance));
+    (ref) => SelectContactRepository(firestore: FirebaseFirestore.instance),);
 
 class SelectContactRepository {
   final FirebaseFirestore firestore;
@@ -36,9 +37,12 @@ class SelectContactRepository {
         var userData = UserModel.fromMap(document.data());
         String selectedPhoneNum =
             selectedContact.phones[0].number.replaceAll(' ', '');
-        if (userData.phoneNumber == selectedPhoneNum) {
+        if (selectedPhoneNum == userData.phoneNumber) {
           isFound = true;
-          // Navigator.pushNamed(context, Mobile);
+          Navigator.pushNamed(context, MobileChatScreen.routeName, arguments: {
+            'name': userData.name,
+            'uid': userData.uid,
+          },);
         }
       }
       if (!isFound) {

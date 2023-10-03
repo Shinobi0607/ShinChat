@@ -17,8 +17,7 @@ const info = [
     'name': 'Naman Ranawat',
     'message': 'Hello, I want to sleep.',
     'time': '1:03 pm',
-    'profilePic':
-        'https://via.placeholder.com/300.png',
+    'profilePic': 'https://via.placeholder.com/300.png',
   },
   {
     'name': 'Dad',
@@ -56,7 +55,7 @@ const info = [
         'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cmFuZG9tJTIwcGVvcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
   },
   {
-    'name': 'Sikandar',
+    'name': 'Home',
     'message': 'Lets Code!',
     'time': '4:56 am',
     'profilePic':
@@ -101,19 +100,9 @@ const messages = [
     "text": "Looks great to me!",
     "time": "11:15 am",
   },
-  
-
   {"isMe": false, "text": "Thanks bro!", "time": "11:17 am"},
-  {
-    "isMe": false,
-    "text": "Did you subscribe?",
-    "time": "11:16 am"
-  },
-  {
-    "isMe": true,
-    "text": "Yes, surely bro!",
-    "time": "11:17 am"
-  },
+  {"isMe": false, "text": "Did you subscribe?", "time": "11:16 am"},
+  {"isMe": true, "text": "Yes, surely bro!", "time": "11:17 am"},
   {
     "isMe": false,
     "text": "Cool, did you like the content?",

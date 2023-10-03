@@ -26,7 +26,7 @@ class SelectContactController {
     required this.selectContactRepository,
   });
 
-  void selectContact(Contact selectedContact, BuildContext context) async {
+  void selectContact(Contact selectedContact, BuildContext context) {
     selectContactRepository.selectContact(selectedContact, context);
   }
 }

@@ -21,7 +21,10 @@ class ContactsList extends StatelessWidget {
               InkWell(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const MobileChatScreen(),),);
+                      builder: (context) =>  const MobileChatScreen(
+                        name: 'RR',
+                        uid: '12345',
+                      ),),);
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 6.0),
