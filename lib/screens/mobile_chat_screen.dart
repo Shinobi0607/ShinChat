@@ -33,7 +33,7 @@ class MobileChatScreen extends ConsumerWidget {
                 children: [
                   Text(name),
                   Text(
-                    snapshot.data!.isOnline ? 'Online' : 'Offline',
+                    snapshot.data!.isOnline ? 'online' : 'offline',
                   ),
                 ],
               );
