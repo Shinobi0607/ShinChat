@@ -7,9 +7,9 @@ import 'package:intl/intl.dart';
 import 'package:whatsapp_ui/common/widgets/loader.dart';
 
 import 'package:whatsapp_ui/features/chat/controller/chat_controller.dart';
+import 'package:whatsapp_ui/features/chat/widgets/my_message_card.dart';
+import 'package:whatsapp_ui/features/chat/widgets/sender_message_card.dart';
 import 'package:whatsapp_ui/models/message.dart';
-import 'package:whatsapp_ui/widgets/my_message_card.dart';
-import 'package:whatsapp_ui/widgets/sender_message_card.dart';
 
 class ChatList extends ConsumerStatefulWidget {
   final String receiverUserId;
@@ -59,6 +59,7 @@ class _ChatListState extends ConsumerState<ChatList> {
                 return MyMessageCard(
                   message: messageData.text,
                   date: timeSent,
+                  type: messageData.type,
                 );
               }
               //SenderMessage -> Card
