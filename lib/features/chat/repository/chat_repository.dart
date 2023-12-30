@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
 import 'package:whatsapp_ui/common/enum/message_enum.dart';
+import 'package:whatsapp_ui/common/providers/message_reply_providers.dart';
 import 'package:whatsapp_ui/common/repositories/common_firebase_storage_repository.dart';
 import 'package:whatsapp_ui/common/utils/utils.dart';
 import 'package:whatsapp_ui/models/chat_contact.dart';
@@ -119,6 +120,10 @@ class ChatRepository {
     required String messageId,
     required receiverUsername,
     required MessageEnum messageType,
+    required MessageReply? messageReply,
+    required String senderUsername,
+    required String recieverUsername,
+    required MessageEnum repliedMessageType,
   }) async {
     final message = Message(
       senderId: auth.currentUser!.uid,
@@ -128,6 +133,13 @@ class ChatRepository {
       messageId: messageId,
       type: messageType,
       isSeen: false,
+      repliedMessage: messageReply == null ? '' : messageReply.message,
+      repliedTo: messageReply == null
+          ? ''
+          : messageReply.isMe
+              ? senderUsername
+              : recieverUsername,
+      repliedMessageType: repliedMessageType,
     );
 
     await firestore
@@ -174,15 +186,6 @@ class ChatRepository {
         text,
         receiverUserId,
         timeSent,
-      );
-      _saveMessageToMessageSubcollection(
-        receiverUserId: receiverUserId,
-        text: text,
-        timeSent: timeSent,
-        messageId: messageId,
-        messageType: MessageEnum.text,
-        receiverUsername: receiverUserData.name,
-        username: senderUser.name, // Access name property from senderUser
       );
     } catch (e) {
       showSnackBar(context: context, content: e.toString());
@@ -233,14 +236,6 @@ class ChatRepository {
       _saveDataToContactsSubcollection(receiverUserData, senderUserData,
           contactMsg, receiverUserId, timeSent);
 
-      _saveMessageToMessageSubcollection(
-          receiverUserId: receiverUserId,
-          username: senderUserData.name,
-          text: imageUrl,
-          timeSent: timeSent,
-          messageId: messageId,
-          receiverUsername: receiverUserData.name,
-          messageType: messageEnum);
     } catch (e) {
       showSnackBar(context: context, content: e.toString());
     }
@@ -267,15 +262,6 @@ class ChatRepository {
         'GIF',
         receiverUserId,
         timeSent,
-      );
-      _saveMessageToMessageSubcollection(
-        receiverUserId: receiverUserId,
-        text: gifUrl,
-        timeSent: timeSent,
-        messageId: messageId,
-        messageType: MessageEnum.gif,
-        receiverUsername: receiverUserData.name,
-        username: senderUser.name, // Access name property from senderUser
       );
     } catch (e) {
       showSnackBar(context: context, content: e.toString());

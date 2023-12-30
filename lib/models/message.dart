@@ -8,6 +8,9 @@ class Message {
   final String messageId;
   final MessageEnum type;
   final bool isSeen;
+  final String repliedMessage;
+  final String repliedTo;
+  final MessageEnum repliedMessageType;
   Message({
     required this.senderId,
     required this.receiverId,
@@ -16,6 +19,9 @@ class Message {
     required this.messageId,
     required this.type,
     required this.isSeen,
+    required this.repliedMessage,
+    required this.repliedTo,
+    required this.repliedMessageType,
   });
 
   Map<String, dynamic> toMap() {
@@ -27,6 +33,9 @@ class Message {
       'messageId': messageId,
       'type': type.type,
       'isSeen': isSeen,
+      'repliedMessage': repliedMessage,
+      'repliedTo': repliedTo,
+      'repliedMessageType': repliedMessageType.type,
     };
   }
 
@@ -39,6 +48,10 @@ class Message {
       messageId: map['messageId'] as String,
       type: (map['type'] as String).toEnum(),
       isSeen: map['isSeen'] as bool,
+      repliedMessage: map['repliedMessage'] as String,
+      repliedTo: map['repliedTo'] as String,
+      repliedMessageType:(map['repliedMessageType'] as String).toEnum(), 
     );
   }
+
 }
