@@ -48,6 +48,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Enter your phone number'),
@@ -55,23 +56,18 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         backgroundColor: backgroundColor,
       ),
       body: SingleChildScrollView(
-        // Wrap your Column with SingleChildScrollView
         child: Padding(
           padding: const EdgeInsets.all(18.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Text('WhatsApp will need to verify your phone number.'),
-              const SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 10),
               TextButton(
                 onPressed: pickCountry,
                 child: const Text('Pick Country'),
               ),
-              const SizedBox(
-                height: 5,
-              ),
+              const SizedBox(height: 5),
               Row(
                 children: [
                   if (country != null) Text('+${country!.phoneCode}'),

@@ -53,7 +53,7 @@ class _MobileScreenLayoutState extends ConsumerState<MobileScreenLayout>
               backgroundColor: backgroundColor,
               elevation: 0,
               title: const Text(
-                'Whatsapp',
+                'ShinChat',
                 style: TextStyle(
                   color: Colors.grey,
                   fontSize: 20,

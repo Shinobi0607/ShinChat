@@ -21,7 +21,7 @@ class LandingScreen extends StatelessWidget {
             const SizedBox(height: 50),
             const Center(
               child: Text(
-                'Welcome to WhatsApp',
+                'Welcome to ShinChat',
                 style: TextStyle(
                   fontSize: 33,
                   fontWeight: FontWeight.w600,
